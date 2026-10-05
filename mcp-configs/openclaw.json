@@ -1,0 +1,15 @@
+{
+  "mcp": {
+    "servers": {
+      "genesispay": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@genesis-tech/genesispay-mcp@1.8.0"],
+        "env": {
+          "GENESISPAY_AGENT_KEY": "gp_ag_your_key",
+          "GENESISPAY_BASE_URL": "https://your-genesispay-instance.example"
+        }
+      }
+    }
+  }
+}
