@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "genesispay-catalog",
+  "version": "0.1.0",
+  "description": "Search products, services and shops listed on GenesisPay through the public, read-only GenesisPay Catalog MCP server, with a catalog skill bundled. No account, no key, no payments.",
+  "author": {
+    "name": "Genesis Technologies",
+    "url": "https://genesispay.finance"
+  },
+  "homepage": "https://genesispay.finance/explore",
+  "repository": "https://github.com/GenesisTechAT/genesispay-agent-skill",
+  "license": "MIT",
+  "keywords": ["genesispay", "catalog", "shopping", "products", "reviews", "x402", "mcp"]
+}
