@@ -19,14 +19,14 @@ There is no executable code and nothing that downloads or updates itself.
 
 ## Install in Hermes Agent
 
-Once the entry is live in the Hermes plugin catalog:
+From the [Hermes plugin catalog](https://hermes-agent.nousresearch.com/docs/plugins/genesispay-catalog):
 
 ```bash
 hermes plugins install genesispay-catalog
 hermes plugins enable genesispay-catalog
 ```
 
-Until then, directly from this repository:
+Or directly from this repository:
 
 ```bash
 hermes plugins install GenesisTechAT/genesispay-agent-skill/agent-plugins/genesispay-catalog --no-enable
