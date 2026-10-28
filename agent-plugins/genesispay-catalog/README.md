@@ -19,14 +19,14 @@ There is no executable code and nothing that downloads or updates itself.
 
 ## Install in Hermes Agent
 
-From the Hermes plugin catalog:
+Once the entry is live in the Hermes plugin catalog:
 
 ```bash
 hermes plugins install genesispay-catalog
 hermes plugins enable genesispay-catalog
 ```
 
-Or directly from this repository:
+Until then, directly from this repository:
 
 ```bash
 hermes plugins install GenesisTechAT/genesispay-agent-skill/agent-plugins/genesispay-catalog --no-enable
@@ -35,11 +35,11 @@ hermes plugins enable genesispay-catalog
 
 The tools load in your next session (or after `/reload-mcp`). Try:
 
-> What's trending on GenesisPay right now?
+> Which shops are on GenesisPay?
 
 ## Install in OpenClaw
 
-Add the server, then install the skill from ClawHub:
+Add the server, then install the skill from ClawHub once it is published there:
 
 ```bash
 openclaw mcp set genesispay-catalog '{"url":"https://catalog.genesispay.finance/mcp/catalog","transport":"streamable-http"}'
@@ -71,26 +71,10 @@ Your search terms, filters and requested ids reach
 Nothing identifies you: there is no sign-in, and the plugin stores no
 credentials. The server is rate limited per client.
 
-## Buying is a separate connection
+## Buying
 
-The catalog never pays. To let an agent buy within limits you set, connect the
-separate GenesisPay MCP server at `https://genesispay.finance/mcp` (OAuth
-sign-in to your own GenesisPay account; spending limits and approvals are
-enforced by GenesisPay, not by the agent). In Hermes:
-
-```bash
-hermes mcp add genesispay --url https://genesispay.finance/mcp --auth oauth --connect-timeout 300
-```
-
-In OpenClaw:
-
-```bash
-openclaw mcp set genesispay '{"url":"https://genesispay.finance/mcp","transport":"streamable-http","auth":"oauth"}'
-openclaw mcp login genesispay
-```
-
-Only add it if you want your agent to spend from your GenesisPay agent wallet.
-See the [GenesisPay MCP docs](https://genesispay.finance/docs/mcp).
+The catalog never pays or orders. Each result's `howToBuy` field and page link
+say where it is bought, typically the shop's own checkout.
 
 ## License
 

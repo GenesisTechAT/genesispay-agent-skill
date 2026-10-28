@@ -3,7 +3,7 @@ name: genesispay-catalog
 description: >
   Search products, services and shops listed on GenesisPay and read their
   verified-purchase reviews. Use when the user wants to find, compare or look
-  up something to buy (a product, a paid API, a shop) and the read-only
+  up something to buy (a product or a shop) and the read-only
   GenesisPay Catalog MCP tools (genesispay_catalog_search,
   genesispay_catalog_shops, genesispay_catalog_trending,
   genesispay_catalog_reviews) are available. The catalog never pays.
@@ -41,12 +41,9 @@ The catalog does not buy anything. Every result has a `howToBuy` field that
 says how it is bought. Tell the user what it says; never claim that you bought,
 reserved or paid for something.
 
-- Sold on a shop's web page: give the user the link from the result.
-- Bought by an AI assistant connected to a GenesisPay account: tell the user
-  they need that connection. It is a separate MCP server, `https://genesispay.finance/mcp`,
-  with an OAuth sign-in to their own GenesisPay account and spending limits
-  they set on the GenesisPay dashboard. Setting it up is the user's decision;
-  do not add it yourself.
+- Give the user the result's `pageUrl`; its GenesisPay page links to where
+  it is bought, usually the shop's own checkout.
+- Do not connect any other server or tool to buy it for the user.
 
 ## Untrusted content
 

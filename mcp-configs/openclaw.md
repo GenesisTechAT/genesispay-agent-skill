@@ -2,28 +2,27 @@
 
 OpenClaw reads MCP servers from `mcp.servers` in `~/.openclaw/openclaw.json`.
 
-## Hosted, with OAuth (no key to copy)
+## The GenesisPay catalog
+
+The catalog is public and read-only: it searches products and shops listed on
+GenesisPay and reads verified-purchase reviews. No account, no key, and no tool
+that pays or orders.
 
 ```bash
-openclaw mcp set genesispay '{"url":"https://genesispay.finance/mcp","transport":"streamable-http","auth":"oauth"}'
-openclaw mcp login genesispay
+openclaw mcp set genesispay-catalog '{"url":"https://catalog.genesispay.finance/mcp/catalog","transport":"streamable-http"}'
+openclaw mcp probe genesispay-catalog
 ```
 
-`login` prints a GenesisPay sign-in URL and waits on `http://127.0.0.1:8989/oauth/callback`.
-Open the URL, sign in and approve access for **OpenClaw MCP**. Check the result with
-`openclaw mcp probe genesispay`; sign out with `openclaw mcp logout genesispay`.
-If the browser runs on another machine, copy the `code` from the redirect and run
-`openclaw mcp login genesispay --code <code>`.
+## The catalog skill
 
-## Local stdio server with an agent key
+Install the skill from ClawHub once it is published there
+(`openclaw skills install @Smokefarmer/genesispay-catalog`), or from a clone
+of this repository:
 
-[`openclaw.json`](openclaw.json) runs the same tools through
-`npx -y @genesis-tech/genesispay-mcp@2.0.0` with `GENESISPAY_AGENT_KEY` and
-`GENESISPAY_BASE_URL`.
+```bash
+git clone --depth 1 https://github.com/GenesisTechAT/genesispay-agent-skill
+openclaw skills install ./genesispay-agent-skill/agent-plugins/genesispay-catalog/skills/genesispay-catalog
+```
 
-Either way, GenesisPay enforces your spending limits and approvals server-side.
-
-## Catalog only
-
-To search GenesisPay without an account and without any payment tool, see
-[`agent-plugins/genesispay-catalog`](../agent-plugins/genesispay-catalog).
+See [`agent-plugins/genesispay-catalog`](../agent-plugins/genesispay-catalog)
+for what the catalog's tools do.

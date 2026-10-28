@@ -2,52 +2,32 @@
 
 Hermes reads MCP servers from `mcp_servers` in `~/.hermes/config.yaml`.
 
-## Hosted, with OAuth (no key to copy)
+## The GenesisPay catalog
+
+The catalog is public and read-only: it searches products and shops listed on
+GenesisPay and reads verified-purchase reviews. No account, no key, and no tool
+that pays or orders.
 
 ```bash
-hermes mcp add genesispay --url https://genesispay.finance/mcp --auth oauth --connect-timeout 300
+hermes mcp add genesispay-catalog --url https://catalog.genesispay.finance/mcp/catalog
 ```
 
-Your browser opens the GenesisPay sign-in. Approve access for **Hermes Agent**;
-the command waits up to five minutes, then lists the tools. They load in your
-next session (or after `/reload-mcp`). Sign in again later with
-`hermes mcp login genesispay`.
-
-## Local stdio server with an agent key
+Or declare it yourself:
 
 ```yaml
 mcp_servers:
-  genesispay:
-    command: "npx"
-    args: ["-y", "@genesis-tech/genesispay-mcp@2.0.0"]
-    env:
-      GENESISPAY_AGENT_KEY: "gp_ag_your_key"
-      GENESISPAY_BASE_URL: "https://your-genesispay-instance.example"
+  genesispay-catalog:
+    url: https://catalog.genesispay.finance/mcp/catalog
 ```
 
-## Asking before each payment
+The tools load in your next session (or after `/reload-mcp`).
 
-Either way, mark the server untrusted so Hermes asks you before every tool call
-that is not read-only, `genesispay_pay` included:
+## Plugin with the catalog skill
 
-```yaml
-mcp_servers:
-  genesispay:
-    # … one of the two forms above …
-    trust: untrusted
-```
-
-GenesisPay still enforces your spending limits and approvals server-side; this
-adds a confirmation in Hermes on top.
-
-## The skill
+The [`genesispay-catalog`](../agent-plugins/genesispay-catalog) plugin bundles
+the same server with a short skill on how to use it:
 
 ```bash
-hermes skills install https://raw.githubusercontent.com/GenesisTechAT/genesispay-agent-skill/main/SKILL.md
+hermes plugins install GenesisTechAT/genesispay-agent-skill/agent-plugins/genesispay-catalog --no-enable
+hermes plugins enable genesispay-catalog
 ```
-
-## Catalog only
-
-To search GenesisPay without an account and without any payment tool, install
-the read-only catalog plugin instead: see
-[`agent-plugins/genesispay-catalog`](../agent-plugins/genesispay-catalog).
